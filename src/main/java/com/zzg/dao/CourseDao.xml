@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzg.dao.CourseDao">
+    <select id="getCourseById" parameterType="Integer" resultType="Course">
+        select * from s_course where id = #{courseID};
+    </select>
+
+    <select id="getCourseByName" parameterType="String" resultType="Course">
+        select * from s_course c,s_school s
+        where s.id=c.sid
+          and s.schoolname=#{schoolName};
+    </select>
+
+    <update id="updateCourseHoursById" parameterType="Course">
+        update s_course set hours=#{hours} where id=#{id}
+    </update>
+
+    <update id="updateCourseById" parameterType="Course">
+        update s_course set name=#{name},hours=#{hours},sid=#{sid},cover=#{cover}
+        where id=#{id}
+    </update>
+
+    <insert id="addCourse" parameterType="Course">
+        insert into s_course(name,hours,sid,cover) values (#{name},#{hours},#{sid},#{cover});
+    </insert>
+
+    <delete id="deleteCourseById" parameterType="Integer">
+        delete from s_course where id=#{id}
+    </delete>
+
+    <select id="getAllCouseName" resultType="String">
+        select name from s_course
+    </select>
+
+</mapper>

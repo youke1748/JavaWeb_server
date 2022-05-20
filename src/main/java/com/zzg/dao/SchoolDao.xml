@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzg.dao.SchoolDao">
+    <select id="getAllSchoolCourse" resultType="SchoolCourse">
+        select c.id,c.name,c.hours,c.cover,s.schoolname from s_course c,s_school s
+        where s.id=c.sid
+    </select>
+
+    <select id="getAllSchoolName" resultType="String">
+        select schoolname from s_school
+    </select>
+
+    <select id="getIdBySchoolName" resultType="Integer">
+        select id from s_school
+        where schoolname=#{schoolName}
+    </select>
+</mapper>
